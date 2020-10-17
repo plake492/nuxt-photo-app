@@ -1,34 +1,28 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        photo-app
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <form class="row" @submit.prevent="signup">
+      <input v-model="form.email" type="text" class="col-6 p-2" placeholder="email">
+      <input v-model="form.password" type="text" class="col-6 p-2" placeholder="password">
+      <button class="btn-block btn-secondary p-2">submit</button>
+    </form>
   </div>
 </template>
 
 <script>
-export default {}
+import axios from "axios"
+
+export default {
+  data() {
+    return {
+      form :{}
+    }
+  },
+  methods: {
+    signup() {
+      console.log('this.form==>>', this.form )
+    }
+  }
+}
 </script>
 
 <style>
