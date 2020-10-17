@@ -14,12 +14,15 @@ import axios from "axios"
 export default {
   data() {
     return {
-      form :{}
+      form: {},
+      returned : {}
     }
   },
   methods: {
-    signup() {
-      console.log('this.form==>>', this.form )
+    async signup() {
+      const res = await axios.post('https://dayjoi8tle.execute-api.us-east-1.amazonaws.com/dev/users/create', this.form)
+      console.log('res==>>', res)
+      this.returned = {}
     }
   }
 }
