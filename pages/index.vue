@@ -1,10 +1,15 @@
 <template>
-  <div class="container">
+  <div class="container mt-5">
     <form class="row" @submit.prevent="signup">
       <input v-model="form.email" type="text" class="col-6 p-2" placeholder="email">
       <input v-model="form.password" type="text" class="col-6 p-2" placeholder="password">
       <button class="btn-block btn-secondary p-2">submit</button>
     </form>
+    <div class="mt-5" v-if="returned">
+      <div class="container">
+          <p>Email: {{ returned.email }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,28 +20,21 @@ export default {
   data() {
     return {
       form: {},
-      returned : {}
+      returned : ''
     }
   },
   methods: {
     async signup() {
-      const res = await axios.post('https://dayjoi8tle.execute-api.us-east-1.amazonaws.com/dev/users/create', this.form)
-      console.log('res==>>', res)
-      this.returned = {}
+      const { data } = await axios.post('https://dayjoi8tle.execute-api.us-east-1.amazonaws.com/dev/users/create', this.form)
+      // const {data} = await axios.post('http://localhost:4000/dev/users/create', this.form)
+      this.returned = data.response
     }
   }
 }
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+
 
 .title {
   font-family:
